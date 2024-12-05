@@ -39,7 +39,7 @@ dat.long %>%
 # 4. scatterplot
 dat.long %>%
   filter(gene == 'BRCA1' | gene == 'BRCA2') %>%
-  spread(key = gene, value = FPKM) %>%
+  spread(key = gene, value = FPKM) %>%                   # spread() makes rows into columns; gather() does opposite
   ggplot(., aes(x = BRCA1, y = BRCA2, color = tissue)) +
   geom_point() +
   geom_smooth(method = 'lm', se = FALSE)
