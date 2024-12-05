@@ -48,14 +48,19 @@ dat.long %>%
 # 5. heatmap
 genes.of.interest <- c('BRCA1', 'BRCA2', 'TP53', 'ALK', 'MYCN')
 
-pdf("heatmap_save2.pdf", width = 10, height = 8)
+pdf("heatmap_save2.pdf", width = 10, height = 8)  # save plot with format() before plot code and dev.off() after
 dat.long %>%
-  filter(gene %in% genes.of.interest) %>%
+  filter(gene %in% genes.of.interest) %>%   
   ggplot(., aes(x = samples, y = gene, fill = FPKM)) +
   geom_tile() +
   scale_fill_gradient(low = 'white', high = 'red')
 
 dev.off()
+# This function closes the specified plot (by default the current device) and if it is an imguR device, uploads the plots for web hosting
 
+# to access/filter df's, can also use df[df$COLUMN_NAME %in% VECTOR_OF_VALUES, ]
+# https://sparkbyexamples.com/r-programming/usage-of-in-operator-in-r/
+
+# save figure with ggplot function ggsave()
 #ggsave(p, filename = 'heatmap_save1.pdf', width = 10, height = 8)
 
